@@ -1,0 +1,15 @@
+dist: trusty
+matrix: 
+  include:
+    - laguage: node_js
+      node_js:  
+        - "12"
+      before_script: 
+        - cd Ebar-FrontEnd
+      script: 
+        - npm install
+        - npm run build
+    - language: java
+      jdk: oraclejdk8 
+      before_script: 
+        - cd Ebar-Backend
