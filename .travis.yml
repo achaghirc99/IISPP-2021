@@ -16,6 +16,9 @@ matrix:
       before_install:
         - cd Ebar-Backend
         - chmod +x mvnw 
-        - mysql -e 'CREATE DATABASE IF NOT EXISTS ebarbbdd;'
+        - ./mvnw clean install -B
+        - mysql -u root -e 'CREATE DATABASE ebarbbdd;'
+        - mysql -u root -e "CREATE USER 'ebar'@'localhost' IDENTIFIED BY 'ebar';"
+        - mysql -u root -e "GRANT ALL ON ebarbbdd.* TO 'ebar'@'localhost';"
       script:
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
