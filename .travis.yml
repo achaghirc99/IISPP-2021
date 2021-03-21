@@ -13,6 +13,14 @@ matrix:
       jdk: oraclejdk8
       services:
         - mysql
+      addons: 
+        apt:
+          sources:
+            -mysql-5.7-trudty
+          packages:
+            -mysql-server
+      dist: trusty
+      sudo: required
       before_install:
         - cd Ebar-Backend
         - chmod +x mvnw 
