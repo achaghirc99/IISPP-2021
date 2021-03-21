@@ -29,5 +29,3 @@ matrix:
         - mysql -u root -e "CREATE USER 'ebar'@'localhost' IDENTIFIED BY 'ebar';"
         - mysql -u root -e "GRANT ALL ON ebarbbdd.* TO 'ebar'@'localhost';"
         - ./mvnw clean install -B
-      script:
-        - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
