@@ -16,5 +16,6 @@ matrix:
       before_install:
         - cd Ebar-Backend
         - chmod +x mvnw 
+        - mysql -u root < bbdd_Travis.sql
       script:
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
