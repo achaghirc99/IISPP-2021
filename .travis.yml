@@ -21,6 +21,11 @@ matrix:
             - mysql-server-5.6
             - mysql-client-5.6
       dist: trusty
+      addons:
+        sonarcloud:
+          organization: "achaghirc99"
+          token:
+            secure: "JiJf9kphTAq4Z1iZsPLOoJn6pZhxgu8agoVq/xvodahTBgcLXQOjrHZwdd6bRpiirpWFZ2SoIN1PwVW5xDtVrs3qZjn1v/G+W1wVJE0GmvZwv/R/14zQcADwjQnfmbcjGfxCD+T21Tv8PttM9kScT3i6ctNkzXklaTd5zJge83m338KYkQ08KTiQjwyLHxFX7YOIpqZmjimbJRWyYarzG10L8NvHLYbWEbvpCcZcaeXOR4FJH13lgtZy9XOLF8Nb9KpBrTh4A5pf/qv/18M0U+zdhbLxrCZZyRLE58U2/6QQaZY8Ag+u4/gW40tMLfbLAQbmHpum+wki454bLlypR9dtaDjyTd3w8GRq7B+J+ugNdn+oLRIbwJn13I9xQWS/mnSXX16O4/hoFw2cNJdXm0IIvLXolOPsmmvJg8IwfZ57ExnM1MJDbRgcUvDxGy3AzNJDU37bTLPo6kgyK5v0IThMhUr2PYX55YLBcYKwtekeEZvC7AKjOGto7wro7GtcSGZYFsNFHOZI2FQbmG7q39ZTuW8r9afeasbE1GDnIbn7QT908DtX0Uym+7W6SUCA4pb1PL+4IO3oJQGevmtEQ8nPmO5k0l+cv0v1sJGepAd7ds0oevEymYb0XDsyT69gmaYEqRelbgsoDEI4SEgSsQnzl+wyAvPsRln4OYgD/vE=" 
       sudo: required
       before_install:
         - cd Ebar-Backend
@@ -29,3 +34,6 @@ matrix:
         - mysql -u root -e "CREATE USER 'ebar'@'localhost' IDENTIFIED BY 'ebar';"
         - mysql -u root -e "GRANT ALL ON ebarbbdd.* TO 'ebar'@'localhost';"
         - ./mvnw clean install -B
+      script:
+      # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
